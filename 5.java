@@ -1,47 +1,26 @@
-// Можно использовать импорты, например:
-// import java.util.*;
-
-import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.function.IntBinaryOperator;
 
-public class Sol4 {
-    ArrayList<Integer> arrayList = new ArrayList<>();
+public class Sol2 {
+    int res = -1;
+    ArrayList<Integer> arr = new ArrayList<>();
+
 
     public int solution(int[] a) {
-        int maxDeep = -1;
-        int localMin;
-        for (int i = 0; i < a.length; i++) {
-            int b = i;
-            arrayList.add(a[i]);
-            try {
-                while (a[i] > a[b + 1]) {
-                    arrayList.add(a[b+1]);
-                    b++;
+        int maxDeep=-1;
+        for (int i = 0; i < a.length-1; i++) {
+            arr.add(a[i]);
+            for (int b =1; b<a.length; b++){
+                arr.add(a[b]);
+                int control = findMin(arr);
+                if(maxDeep<control){
+                    maxDeep=control;
                 }
 
-            } catch (ArrayIndexOutOfBoundsException e) {
             }
-            try {
-                arrayList.add(a[b + 1]);
-            }catch (ArrayIndexOutOfBoundsException e){
-
-            }
-            int control = findMin(arrayList);
-            if(maxDeep<control){
-                maxDeep=control;
-            } else i=b;
-            arrayList.clear();
-
-
-
+            arr.clear();
         }
-
         return maxDeep;
     }
-
-
     public int findMin(ArrayList<Integer> arrayList) {
         if(arrayList.size()<=2){
             return 0;
@@ -62,5 +41,5 @@ public class Sol4 {
         return min;
 
     }
-
 }
+
