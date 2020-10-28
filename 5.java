@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Sol2 {
+ class Solution {
     int res = -1;
     ArrayList<Integer> arr = new ArrayList<>();
 
